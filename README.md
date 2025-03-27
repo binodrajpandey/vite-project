@@ -23,3 +23,9 @@ cd vite-project
 pnpm install
 pnpm run dev
 ```
+
+## Add vue router
+Reference: https://router.vuejs.org/guide/
+```
+pnpm add vue-router@4
+```
