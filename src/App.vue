@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import { RouterView, RouterLink } from 'vue-router';
+import { RouterView, RouterLink } from "vue-router";
 </script>
 
 <template>
   <main>
     <div class="links">
       <RouterLink class="link" active-class="active" to="/">Home</RouterLink>
-      <RouterLink class="link" active-class="active" to="/about">About</RouterLink>
+      <RouterLink class="link" active-class="active" to="/about"
+        >About</RouterLink
+      >
     </div>
     <RouterView />
   </main>
@@ -14,14 +16,14 @@ import { RouterView, RouterLink } from 'vue-router';
 
 <style scoped>
 .links {
-  padding: 20px
+  padding: 20px;
 }
 
-.links .link  {
-  margin: 0 5px
+.links .link {
+  margin: 0 5px;
 }
 
-.active{
+.active {
   color: green;
 }
 </style>
