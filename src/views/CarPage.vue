@@ -19,16 +19,16 @@
 <script setup>
 import { useRoute, useRouter, RouterView } from "vue-router";
 import { ref, onBeforeMount } from "vue";
-import cars from "../data.json";
+import axios from "axios";
 
 const car = ref(null);
 const route = useRoute();
 const router = useRouter();
 
-// console.log(route.params)
 const { id } = route.params;
 
 onBeforeMount(() => {
-  car.value = cars.find((c) => c.id === parseInt(id));
+  axios.get(`http://localhost:3000/cars/${id}`)
+  .then(response => car.value = response.data);
 });
 </script>

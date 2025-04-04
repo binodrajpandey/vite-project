@@ -10,7 +10,7 @@
     </select>
     <div class="cards">
       <div
-        v-for="car in cars"
+        v-for="car in filteredCars"
         :key="car.id"
         class="card"
         @click="router.push(`car/${car.id}`)"
@@ -27,22 +27,24 @@
 </template>
 
 <script setup>
-import carData from "../data.json";
+// import carData from "../data.json";
 import { useRoute, useRouter, RouterLink } from "vue-router";
 
 import { onMounted, ref, watch } from "vue";
+import axios from "axios";
 
 const router = useRouter();
 const route = useRoute();
-const cars = ref(carData);
+const filteredCars = ref([]);
+const cars = ref([]);
 const make = ref("All");
 const price = ref("");
 
 watch(make, () => {
   if (make.value === "All") {
-    cars.value = carData;
+    filteredCars.value = cars.value;
   } else {
-    cars.value = carData.filter((c) => c.make === make.value);
+    filteredCars.value = cars.value.filter((c) => c.make === make.value);
   }
 });
 
@@ -55,8 +57,16 @@ const handleChange = () => {
 };
 
 onMounted(() => {
+  axios.get("http://localhost:3000/cars")
+  .then(response => {
+    cars.value = response.data;
+    filteredCars.value = response.data;
+    console.log(cars.value);
+});
   console.log(route.query);
-  make.value = route.query.make;
+  if (route.query.make) {
+    make.value = route.query.make;
+  }
 });
 </script>
 <style scoped>

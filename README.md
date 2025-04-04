@@ -29,3 +29,10 @@ Reference: https://router.vuejs.org/guide/
 ```
 pnpm add vue-router@4
 ```
+
+## JSON Server
+we need json-server globally as we have to use json-server command, so it can be done using volta itself instead of pnpm
+```
+volta add json-server
+ json-server src/data.json --watch
+```
